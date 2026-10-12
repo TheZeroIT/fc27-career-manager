@@ -1,177 +1,194 @@
-<!DOCTYPE html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>FC27 Career Manager</title>
+<!DOCTYPE html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>FC27 Squad Database</title>
 <style>
-:root{--bg:#f2f5f7;--card:#fff;--tx:#14202b;--mu:#68788a;--ac:#0a8f5a;--bd:#d8e0e6;--up:#0a8f5a;--dn:#d33;--pt:#2f8f4e;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1620;--card:#18232f;--tx:#e8eef3;--mu:#8da0b1;--bd:#2a3846;--up:#2fd08a;--dn:#ff6b6b;--pt:#1f6b3a}}
-:root[data-theme="dark"]{--bg:#0e1620;--card:#18232f;--tx:#e8eef3;--mu:#8da0b1;--bd:#2a3846;--up:#2fd08a;--dn:#ff6b6b;--pt:#1f6b3a}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:15px system-ui,-apple-system,Segoe UI,sans-serif}
-header{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;gap:8px;flex-wrap:wrap}
-h1{font-size:18px;margin:0}h3,h4{margin:8px 0}
-#nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:3;background:var(--bg);display:flex;gap:6px;overflow-x:auto;padding:6px 12px;border-bottom:1px solid var(--bd)}
-.tab{white-space:nowrap}main{padding:12px;max-width:900px;margin:auto}
-button,select,input,textarea{font:inherit;color:var(--tx);background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:7px 10px;max-width:100%}
-button{cursor:pointer}.on,.pri{background:var(--ac);color:#fff;border-color:var(--ac)}.dng{color:var(--dn);border-color:var(--dn)}
-textarea{width:100%;min-height:70px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}
-.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:10px;margin-bottom:10px}
-.st b{display:block;font-size:22px}.mu,small{color:var(--mu)}.up{color:var(--up)}.dn{color:var(--dn)}
-.bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}.sc{overflow-x:auto}
-table{border-collapse:collapse;width:100%}td,th{padding:6px;border-bottom:1px solid var(--bd);text-align:left;white-space:nowrap}tr.cl{cursor:pointer}
-.pitch{position:relative;height:360px;background:var(--pt);border:2px solid #fff6;border-radius:10px;margin-bottom:10px}
-.pn{position:absolute;transform:translate(-50%,-50%);background:#000a;color:#fff;border-radius:8px;padding:2px 5px;font-size:11px;text-align:center;min-width:54px;border:1px solid transparent}.pn.wr{border-color:#f55}
-.row{display:flex;gap:6px;align-items:center;margin:4px 0}.rl{width:38px;font-weight:700}.row select{flex:1;min-width:0}
-.chip{margin:2px}.mb{position:fixed;inset:0;background:#0009;display:flex;justify-content:center;align-items:flex-start;overflow:auto;padding:12px;z-index:5}
-.md{background:var(--card);border-radius:12px;padding:14px;max-width:560px;width:100%}
-#toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:#000c;color:#fff;padding:8px 14px;border-radius:20px;display:none;z-index:20}
-.badge{font-size:11px;border:1px solid var(--bd);border-radius:10px;padding:1px 7px;color:var(--mu)}
-
-@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-@keyframes pop{from{opacity:0;transform:translate(-50%,-50%) scale(.4)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
-@keyframes mpop{from{opacity:0;transform:scale(.92) translateY(10px)}to{opacity:1;transform:none}}
-@keyframes dr{to{stroke-dashoffset:0}}
-header{background:linear-gradient(120deg,#0a8f5a,#0b5fa5);color:#fff;border-radius:0 0 16px 16px}
-button{transition:transform .12s,background .2s,box-shadow .2s}button:active{transform:scale(.94)}button:hover{box-shadow:0 2px 8px #0003}
-.card{transition:transform .2s,box-shadow .2s}.card:hover{transform:translateY(-2px);box-shadow:0 6px 16px #0002}
-#v.in .card{animation:up .45s both}#v.in .card:nth-child(2){animation-delay:.06s}#v.in .card:nth-child(3){animation-delay:.12s}#v.in .card:nth-child(4){animation-delay:.18s}#v.in .card:nth-child(n+5){animation-delay:.24s}
-#v.in .grid .card{animation:up .45s both}
-.pn{animation:pop .4s cubic-bezier(.3,1.5,.5,1) both}.md{animation:mpop .25s both}
-tr.cl{transition:background .15s}tr.cl:hover{background:#0a8f5a22}
-.dr{stroke-dasharray:1;stroke-dashoffset:1;animation:dr 1.1s ease-out forwards}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.dr{stroke-dashoffset:0}}
+:root{--bg:#070b09;--card:#101915;--card2:#16231d;--bd:#1e2f27;--tx:#e9f3ee;--mu:#7f9a8d;--ac:#1fe08a;--ac2:#0fbf6f;--up:#1fe08a;--dn:#ff5d6c;--wn:#ffb84d;--ink:#04120b;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root[data-theme="light"]{--bg:#eef3f0;--card:#fff;--card2:#f1f6f3;--bd:#d3dfd8;--tx:#0e1a14;--mu:#5b7367;--ac:#0aa660;--ac2:#08894f;--up:#0aa660;--dn:#d6334a;--wn:#c77b0a;--ink:#fff;color-scheme:light}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh}
+body::before,body::after{content:'';position:fixed;z-index:-1;background:var(--ac);opacity:.07;pointer-events:none}
+body::before{inset:0;clip-path:polygon(62% 0,100% 0,100% 55%)}body::after{inset:0;clip-path:polygon(0 100%,0 62%,40% 100%)}
+header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;gap:8px;flex-wrap:wrap;background:var(--card);border-bottom:1px solid var(--bd)}
+h1{font-size:19px;margin:0;display:flex;align-items:center;gap:8px;letter-spacing:.5px}h1 svg{color:var(--ac)}h1 .mu{font-weight:400;font-size:14px}h2{margin:2px 0;font-size:28px}h3,h4{margin:8px 0}
+#nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:3;background:var(--bg);display:flex;gap:2px;overflow-x:auto;padding:0 12px;border-bottom:1px solid var(--bd)}
+.tab{white-space:nowrap;background:none;border:0;border-bottom:3px solid transparent;border-radius:0;color:var(--mu);padding:12px 14px;font-weight:600}.tab:hover{color:var(--tx)}.tab.on{color:var(--ac);border-bottom-color:var(--ac);background:none}
+main{padding:14px;max-width:1000px;margin:auto}.ph{margin:4px 0 14px}.ph small{text-transform:uppercase;letter-spacing:1.5px;font-size:11px;color:var(--ac);font-weight:700}.ph p{margin:0;color:var(--mu)}
+button,select,input,textarea{font:inherit;color:var(--tx);background:var(--card2);border:1px solid var(--bd);border-radius:10px;padding:8px 12px;max-width:100%}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--ac);outline-offset:-1px}
+button{cursor:pointer;transition:transform .12s,border-color .2s,box-shadow .2s}button:hover{border-color:var(--ac)}button:active{transform:scale(.95)}
+.on,.pri{background:var(--ac);color:var(--ink);border-color:var(--ac);font-weight:700}.dng{color:var(--dn);border-color:var(--dn)}
+textarea{width:100%;min-height:60px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:10px}
+.fg{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}.f{display:flex;flex-direction:column;gap:3px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px;margin-bottom:12px;transition:transform .2s,box-shadow .2s,border-color .2s}.card:hover{transform:translateY(-2px);border-color:var(--ac);box-shadow:0 8px 24px #0006}
+.st{border-left:3px solid var(--ac)}.st b{display:block;font-size:24px;margin-top:2px}.mu,small{color:var(--mu)}.up{color:var(--up)}.dn{color:var(--dn)}.wn{color:var(--wn)}
+.bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}.sc{overflow-x:auto}
+table{border-collapse:collapse;width:100%}th{font-size:11px;text-transform:uppercase;letter-spacing:.8px;color:var(--mu)}td,th{padding:9px 8px;border-bottom:1px solid var(--bd);text-align:left;white-space:nowrap}tr.cl{cursor:pointer;transition:background .15s}tr.cl:hover{background:var(--card2);box-shadow:inset 3px 0 var(--ac)}
+.rb{display:inline-block;min-width:32px;text-align:center;padding:2px 6px;border-radius:7px;font-weight:800;color:var(--ink)}.r1{background:#5d7066;color:#fff}.r2{background:#b9d94a}.r3{background:#3ddc84}.r4{background:#00f5a0;box-shadow:0 0 10px #00f5a099}
+.chip{margin:3px;display:inline-block;border:1px solid var(--bd);background:var(--card2);border-radius:999px;padding:3px 11px;font-size:12px}.chip.w{border-color:var(--dn);color:var(--dn)}
+.pb{height:8px;border-radius:5px;background:var(--bd);overflow:hidden}.pb i{display:block;height:100%;background:var(--ac);transition:width .8s}
+.mb{position:fixed;inset:0;background:#000a;display:flex;justify-content:center;align-items:flex-start;overflow:auto;padding:12px;z-index:5}
+.md{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:16px;max-width:620px;width:100%;animation:mp .25s both}
+#toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:var(--ac);color:var(--ink);font-weight:700;padding:8px 16px;border-radius:20px;display:none;z-index:20}
+.badge{font-size:12px;border:1px solid var(--ac);color:var(--ac);border-radius:999px;padding:3px 10px}
+.pc{font-size:15px;padding:7px 12px}.chip.best{border-color:var(--ac);box-shadow:0 0 0 2px var(--ac),0 0 14px #1fe08a55}.ig{display:grid;grid-template-columns:repeat(auto-fill,minmax(125px,1fr));gap:8px}.ig label{display:flex;flex-direction:column;gap:2px;font-size:12px;color:var(--mu)}.ig input{padding:6px 8px;width:100%}
+.fld{position:relative;height:440px;max-width:520px;margin:0 auto 10px;border-radius:14px;border:2px solid #ffffff44;overflow:hidden;background:repeating-linear-gradient(#14452c 0 44px,#185135 44px 88px)}.fl{position:absolute;border:2px solid #ffffff44}
+.pn2{position:absolute;transform:translate(-50%,-50%);text-align:center;background:#000b;border:2px solid #ffffff33;border-radius:12px;padding:4px 9px;min-width:56px;transition:box-shadow .3s}.pn2 small{color:#cfe8da;font-weight:700}.pn2.best{border-color:var(--ac);box-shadow:0 0 0 2px var(--ac),0 0 16px #1fe08a88}
+.pn2{font-size:11px}.pn2.wr{border-color:var(--dn)}.row{display:flex;gap:6px;align-items:center;margin:4px 0}.rl{width:40px;font-weight:700}.row select{flex:1;min-width:0}
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}@keyframes mp{from{opacity:0;transform:scale(.92) translateY(10px)}to{opacity:1;transform:none}}
+#v.in .card{animation:up .45s both}#v.in .card:nth-child(3){animation-delay:.06s}#v.in .card:nth-child(4){animation-delay:.12s}#v.in .card:nth-child(n+5){animation-delay:.18s}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style></head><body>
-<header><h1>⚽ FC27 Career Manager</h1><div><span id="sea" class="badge"></span> <button onclick="ns()">+ Nuova stagione</button></div></header>
+<header><h1><svg width="26" height="26" viewBox="0 0 26 26"><path d="M13 3 24 22H2z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></svg>FC 27 <span class="mu">Squad DB</span></h1><div><span id="sea" class="badge"></span> <button onclick="tg()" title="Tema">◐</button> <button class="pri" onclick="ns()">+ Stagione</button></div></header>
 <div id="nav"></div><main id="v"></main><div id="m"></div><div id="c"></div><div id="toast"></div>
 <script>
-const $=id=>document.getElementById(id),KEY='fc27-career-v1';
+const $=id=>document.getElementById(id),KEY='fcdb-v1';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const uid=()=>Math.random().toString(36).slice(2,10),today=()=>new Date().toISOString().slice(0,10);
-const ROLES=['POR','TS','TD','DC','CDC','CC','COC','AS','AD','ES','ED','ATT'];
-const FM={'4-2-3-1':'POR|TS DC DC TD|CDC CDC|AS COC AD|ATT','4-2-1-3':'POR|TS DC DC TD|CDC CDC|COC|AS ATT AD','4-3-3':'POR|TS DC DC TD|CC CDC CC|AS ATT AD','4-4-2':'POR|TS DC DC TD|AS CC CC AD|ATT ATT','3-5-2':'POR|DC DC DC|TS CC CDC CC TD|ATT ATT','4-1-4-1':'POR|TS DC DC TD|CDC|AS CC CC AD|ATT'};
-const PR={'Equilibrata':['Equilibrato','Equilibrato','Media'],'Contropiede':['Contropiede','Arretrato','Bassa'],'Possesso palla':['Possesso','Equilibrato','Media'],'Pressing alto':['Equilibrato','Pressing alto','Alta'],'Difensiva':['Equilibrato','Arretrato','Bassa']};
-const ST=['Equilibrato','Possesso','Contropiede','Palla lunga'],DF=['Equilibrato','Pressing alto','Arretrato'],LN=['Bassa','Media','Alta'];
+const RO=['POR','TS','TD','DC','CDC','CC','COC','AS','AD','ES','ED','ATT'];
+const LS={rosa:'Rosa',trasf:'Lista trasferimenti',prestiti:'Lista prestiti',oss:'Osservati',ceduto:'Archivio'};
+const CT=['Professionista','Giovane','Prestito in','Prestito out','Opzione riscatto'];
 const P0=[['POR','M. Thiel',63,92],['POR','P. Heinze',62,85],['ATT','A. Bauer',66,95],['AD/AS','J. Reuter',65,86],['COC','R. De Paula',70,86],['AS/COC','C. Silveira',74,85],['CDC','D. Ziegler',60,86,1],['CDC','M. Casadei',67,85,1],['DC','F. Tahiri',67,90],['TD/TS','E. Markaj',63,81],['TD/TS','F. Gjon',62,84],['CDC','A. Bemzekri',63,90],['TS','K. Min Jun',65,95],['ATT','J. Yoon Su',59,89]];
-const S0=[['AS/CC','J. Lobo',70,84],['AS/ED','Y. Queiroz',67,84]];
-function mk(a,st){const[r,n,o,p,pl]=a,ro=r.split('/');return{id:uid(),name:n,role:ro[0],sec:ro.slice(1),ovr0:o,pot0:p,plus0:!!pl,hist:[{s:'Stagione 1',ovr:o,pot:p,plus:!!pl}],status:st,reg:today(),regS:'Stagione 1',buy:null,sell:null,note:'',loans:[]}}
-function seed(){const pl=P0.map(a=>mk(a,'attivo'));S0.forEach(a=>{const p=mk(a,'ceduto');p.sell={d:'',price:null};pl.push(p)});return{v:1,seasons:['Stagione 1'],players:pl,forms:[],log:[]}}
-function mig(j){j.forms=j.forms||[];j.log=j.log||[];j.seasons=j.seasons||['Stagione 1'];j.v=1;return j}
+function mk(a){const[r,n,o,p,pl]=a,ro=r.split('/');return{id:uid(),name:n,role:ro[0],sec:ro.slice(1),age:null,ovr:o,pot:p,plus:!!pl,ovr0:o,pot0:p,plus0:!!pl,val:null,wage:null,ct:CT[0],yrs:null,list:'rosa',inj:false,note:'',hist:[{s:'Stagione 1',ovr:o,pot:p,plus:!!pl}]}}
+const seed=()=>({v:1,seasons:['Stagione 1'],bud:null,wb:null,players:P0.map(mk),log:[],scout:[],forms:[]});
+const mig=j=>{j.log=j.log||[];j.scout=j.scout||[];j.forms=j.forms||[];j.seasons=j.seasons||['Stagione 1'];j.v=1;return j};
 function load(){try{const j=JSON.parse(localStorage.getItem(KEY));if(j&&j.players)return mig(j)}catch(e){}return seed()}
-let S=load(),T='dash',FID=null,F={q:'',role:'',st:'attivo',min:0,sort:'pot'},FF={role:'',pot:0},G={t:90,m:'4-2-3-1'};
-function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){toast('Salvataggio locale non riuscito: fai un backup')}}
+let S=load(),T='dash',F={q:'',l:'rosa',role:'',sort:'ovr'};
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){toast('Salvataggio non riuscito: fai un backup')}};
 function toast(t){const e=$('toast');e.textContent=t;e.style.display='block';setTimeout(()=>e.style.display='none',2600)}
-const lg=t=>{S.log.unshift({d:new Date().toISOString().slice(0,16),t});S.log=S.log.slice(0,200)};
-const fp=(v,pl)=>v+(pl?'+':''),cur=p=>p.hist[p.hist.length-1],prev=p=>p.hist.length>1?p.hist[p.hist.length-2]:null,gp=id=>S.players.find(p=>p.id==id);
-const dl=d=>d==null?'–':d==0?'<span class=mu>=</span>':d>0?`<b class=up>▲${d}</b>`:`<b class=dn>▼${-d}</b>`;
-const opts=(l,s)=>l.map(x=>`<option ${x==s?'selected':''}>${x}</option>`).join('');
-const roles=p=>[p.role,...p.sec].join('/'),can=(p,r)=>p.role==r||p.sec.includes(r);
-function sl(m){const rows=FM[m].split('|'),o=[];rows.forEach((r,i)=>{const a=r.split(' ');a.forEach((ro,j)=>o.push({r:ro,x:(j+1)/(a.length+1)*100,y:92-i*(76/(rows.length-1))}))});return o}
-function match(ps,s){const pj=Array(ps.length).fill(-1),ms=Array(s.length).fill(-1);const tr=(i,sn)=>{for(let j=0;j<ps.length;j++)if(!sn[j]&&can(ps[j],s[i].r)){sn[j]=1;if(pj[j]<0||tr(pj[j],sn)){pj[j]=i;ms[i]=j;return 1}}return 0};s.forEach((_,i)=>tr(i,{}));return ms}
-function modal(h){$('m').innerHTML=`<div class=mb onclick="if(event.target==this)cm()"><div class=md>${h}</div></div>`}
-const cm=()=>$('m').innerHTML='';
+const gp=id=>S.players.find(p=>p.id==id),can=(p,r)=>p.role==r||p.sec.includes(r),sea=()=>S.seasons[S.seasons.length-1];
+const pm=s=>{s=String(s??'').trim().toLowerCase().replace(',','.');if(!s)return null;const m=s.endsWith('m')?1e6:s.endsWith('k')?1e3:1,n=parseFloat(s);return isNaN(n)?null:Math.round(n*m)};
+const fm=n=>n==null?'–':(Math.abs(n)>=1e6?+(n/1e6).toFixed(2)+'M':Math.abs(n)>=1e3?Math.round(n/1e3)+'K':n)+' €';
+const opts=(l,s)=>l.map(x=>`<option ${x==s?'selected':''}>${x}</option>`).join(''),lopt=s=>Object.entries(LS).map(([k,v])=>`<option value=${k} ${s==k?'selected':''}>${v}</option>`).join('');
+const lg=(t,amt=0)=>{S.log.unshift({d:today(),t,amt});S.log=S.log.slice(0,300)};
+function modal(h){$('m').innerHTML=`<div class=mb onclick="if(event.target==this)cm()"><div class=md>${h}</div></div>`}const cm=()=>$('m').innerHTML='';
 let _f;function cfm(msg,fn){_f=fn;$('c').innerHTML=`<div class=mb style="z-index:9"><div class=md><p>${esc(msg)}</p><button class=dng onclick="cf()">Conferma</button> <button onclick="$('c').innerHTML=''">Annulla</button></div></div>`}
 function cf(){const f=_f;$('c').innerHTML='';f()}
-function go(k){T=k;R();scrollTo(0,0)}
-function R(){$('sea').textContent=S.seasons[S.seasons.length-1];
-$('nav').innerHTML=[['dash','Dashboard'],['rosa','Rosa'],['mer','Mercato'],['for','Formazioni'],['obi','Obiettivi'],['dat','Dati']].map(([k,l])=>`<button class="tab ${T==k?'on':''}" onclick="go('${k}')">${l}</button>`).join('');
-$('v').innerHTML={dash:vDash,rosa:vRosa,mer:vMer,for:vFor,obi:vObi,dat:vDat}[T]()}
-/* DASHBOARD */
-function vDash(){const A=S.players.filter(p=>p.status=='attivo'),C=A.map(cur),X=S.players.filter(p=>p.status=='ceduto'),ex=C.filter(c=>!c.plus);
+const go=k=>{T=k;R();scrollTo(0,0)};
+const rb=n=>`<span class="rb r${n>=90?4:n>=80?3:n>=70?2:1}">${n}</span>`;
+const PH={dash:['Squadra · Panoramica','Dashboard','Riepilogo di rosa, contratti e budget.'],db:['Squadra · Giocatori','Database','Tutti i giocatori, divisi per lista.'],for:['Squadra · Tattica','Formazioni','Schiera gli undici, scegli modulo e tattiche.'],con:['Squadra · Contratti','Contratti','Scadenze, ingaggi e rinnovi.'],mer:['Squadra · Finanze','Mercato','Budget, acquisti, cessioni e movimenti.'],pos:['Strumenti · Calcolatori','Posizione','Inserisci gli attributi e vedi la valutazione stimata in ogni posizione.'],vi:['Strumenti · Calcolatori','Vivaio','Controllo del potenziale 90+ dai rapporti dello scout.'],dat:['Impostazioni','Dati','Backup, ripristino ed esportazione.']};
+function tg(){const t=document.documentElement.dataset.theme=='light'?'dark':'light';document.documentElement.dataset.theme=t;try{localStorage.setItem('fcdb-theme',t)}catch(e){}}
+try{const t=localStorage.getItem('fcdb-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}
+let _t;function R(){$('sea').textContent=sea();
+$('nav').innerHTML=[['dash','Dashboard'],['db','Database'],['for','Formazioni'],['con','Contratti'],['mer','Mercato'],['pos','Posizioni'],['vi','Vivaio'],['dat','Dati']].map(([k,l])=>`<button class="tab ${T==k?'on':''}" onclick="go('${k}')">${l}</button>`).join('');
+const v=$('v');v.innerHTML=`<div class=ph><small>${PH[T][0]}</small><h2>${PH[T][1]}</h2><p>${PH[T][2]}</p></div>`+{dash:vDash,db:vDb,for:vFor,con:vCon,mer:vMer,pos:vPos,vi:vVi,dat:vDat}[T]();
+if(_t!==T){_t=T;v.classList.remove('in');void v.offsetWidth;v.classList.add('in')}
+document.querySelectorAll('.st b').forEach(e=>{const x=e.textContent.trim();if(!/^\d+(\.\d+)?$/.test(x))return;const n=parseFloat(x),d=x.includes('.')?1:0,t0=performance.now(),f=q=>{const k=Math.min(1,(q-t0)/700);e.textContent=(n*(1-Math.pow(1-k,3))).toFixed(d);if(k<1)requestAnimationFrame(f)};requestAnimationFrame(f)})}
 const av=a=>a.length?(a.reduce((x,y)=>x+y,0)/a.length).toFixed(1):'–';
-const top=C.length?C.reduce((m,c)=>c.pot>m.pot?c:m):null;
-const th=n=>{const e=ex.filter(c=>c.pot>=n).length,u=C.filter(c=>c.plus&&c.pot>=n).length;return e+(u?` <small>+${u} incerti</small>`:'')};
-const un=match(A,sl(G.m)).filter(x=>x<0).length,ch=A.filter(p=>prev(p)&&cur(p).pot!=prev(p).pot);
-const by=S.players.filter(p=>p.buy).sort((a,b)=>b.buy.d.localeCompare(a.buy.d)).slice(0,3),sd=S.players.filter(p=>p.sell).sort((a,b)=>b.sell.d.localeCompare(a.sell.d)).slice(0,3);
+function vDash(){const Rs=S.players.filter(p=>p.list=='rosa'),sum=k=>Rs.reduce((a,p)=>a+(p[k]||0),0),w=sum('wage'),res=S.bud==null?null:S.bud+S.log.reduce((a,l)=>a+l.amt,0);
+const exp=S.players.filter(p=>['rosa','prestiti'].includes(p.list)&&p.yrs!=null&&p.yrs<=1),inj=Rs.filter(p=>p.inj);
 const t=(l,v)=>`<div class="card st"><small>${l}</small><b>${v}</b></div>`;
-return `<div class=grid>${t('Attivi',A.length)}${t('Ceduti',X.length)}${t('POT max',top?fp(top.pot,top.plus):'–')}${t('OVR medio',av(C.map(c=>c.ovr)))}${t('POT medio <small>(solo esatti: '+ex.length+')</small>',av(ex.map(c=>c.pot)))}${t('POT ≥85',th(85))}${t('POT ≥90',th(90))}${t('POT ≥95',th(95))}${t('Ruoli scoperti <small>('+G.m+')</small>',un)}</div>
-<div class=card><h4>Ultimi acquisti</h4>${by.map(p=>`${esc(p.name)} <small>${p.buy.d}</small>`).join('<br>')||'<small>Nessun acquisto registrato</small>'}<h4>Ultime cessioni</h4>${sd.map(p=>`${esc(p.name)} <small>${p.sell.d}</small>`).join('<br>')||'<small>Nessuna</small>'}</div>
-<div class=card><h4>POT cambiato rispetto alla stagione precedente</h4>${ch.map(p=>`${esc(p.name)} ${fp(prev(p).pot,prev(p).plus)}→${fp(cur(p).pot,cur(p).plus)} ${dl(cur(p).pot-prev(p).pot)}`).join('<br>')||'<small>Nessuna variazione</small>'}</div>`}
-/* ROSA */
-function vRosa(){return `<div class=bar><input placeholder="Cerca nome" value="${esc(F.q)}" oninput="F.q=this.value;tb()"><select onchange="F.role=this.value;tb()"><option value="">Ruolo</option>${opts(ROLES,F.role)}</select><select onchange="F.st=this.value;tb()">${['attivo','prestito','ceduto','ritirato','tutti'].map(x=>`<option ${F.st==x?'selected':''}>${x}</option>`).join('')}</select><select onchange="F.min=+this.value;tb()">${[0,80,85,90,95].map(x=>`<option value=${x} ${F.min==x?'selected':''}>POT ≥${x}</option>`).join('')}</select><select onchange="F.sort=this.value;tb()">${[['pot','Ordina: POT'],['ovr','OVR'],['gr','Crescita OVR'],['n','Nome']].map(([k,l])=>`<option value=${k} ${F.sort==k?'selected':''}>${l}</option>`).join('')}</select></div><div class=sc id=t>${tbl()}</div>`}
+return `<div class=grid>${t('In rosa',Rs.length)}${t('Valore rosa',fm(sum('val')))}${t('Monte ingaggi/sett.',fm(w))}${t('Età media',av(Rs.filter(p=>p.age).map(p=>p.age)))}${t('OVR medio',av(Rs.map(p=>p.ovr)))}${t('POT medio <small>(esatti: '+Rs.filter(p=>!p.plus).length+')</small>',av(Rs.filter(p=>!p.plus).map(p=>p.pot)))}${t('Budget trasferimenti',fm(res))}${t('Infortunati',inj.length)}</div>
+${todo()}<div class=card><h4>Liste</h4>${Object.entries(LS).map(([k,v])=>`<span class=chip>${v}: ${S.players.filter(p=>p.list==k).length}</span>`).join('')}${S.wb?`<p class=mu><small>Ingaggi ${fm(w)} / ${fm(S.wb)} a settimana</small></p><div class=pb><i style="width:${Math.min(100,w/S.wb*100)}%"></i></div>`:''}</div>
+<div class=card><h4>Profondità ruoli (rosa)</h4>${RO.map(r=>{const L=Rs.filter(p=>can(p,r)).sort((a,b)=>b.ovr-a.ovr);return `<span class="chip ${L.length<2?'w':''}">${r}: ${L.length}${L[0]?' · best '+L[0].ovr:''}</span>`}).join('')}<p class=mu><small>In rosso i ruoli con meno di 2 giocatori: candidati al mercato.</small></p></div>
+<div class=card><h4>Contratti in scadenza (≤1 anno)</h4>${exp.map(p=>`${esc(p.name)} <small>${p.yrs==0?'SCADUTO':p.yrs+' anno'}</small>`).join('<br>')||'<small>Nessuno (o anni residui non inseriti)</small>'}</div>`}
+function vDb(){const cnt=k=>k=='tutti'?S.players.length:S.players.filter(p=>p.list==k).length;
+return `<div class=bar>${['tutti',...Object.keys(LS)].map(k=>`<button class="${F.l==k?'on':''}" onclick="F.l='${k}';R()">${k=='tutti'?'Tutti':LS[k]} ${cnt(k)}</button>`).join('')}</div>
+<div class=bar><input placeholder="Cerca nome" value="${esc(F.q)}" oninput="F.q=this.value;tb()"><select onchange="F.role=this.value;tb()"><option value="">Ruolo</option>${opts(RO,F.role)}</select><select onchange="F.sort=this.value;tb()">${[['ovr','Ordina: OVR'],['pot','POT'],['val','Valore'],['wage','Stipendio'],['yrs','Scadenza'],['age','Età'],['n','Nome']].map(([k,l])=>`<option value=${k} ${F.sort==k?'selected':''}>${l}</option>`).join('')}</select><button class=pri onclick="edP()">+ Giocatore</button></div><div class=sc id=t>${tbl()}</div>`}
 const tb=()=>$('t').innerHTML=tbl();
-function tbl(){let L=S.players.filter(p=>(F.st=='tutti'||p.status==F.st)&&(!F.role||can(p,F.role))&&cur(p).pot>=F.min&&p.name.toLowerCase().includes(F.q.toLowerCase()));
-const k={pot:p=>-cur(p).pot,ovr:p=>-cur(p).ovr,gr:p=>-(cur(p).ovr-p.ovr0),n:p=>p.name}[F.sort];L.sort((a,b)=>k(a)>k(b)?1:-1);
-return `<table><tr><th>Giocatore<th>Ruoli<th>OVR<th>POT<th>Iniz.<th>ΔPOT prec.<th>Stato</tr>${L.map(p=>{const c=cur(p),v=prev(p);return `<tr class=cl onclick="showP('${p.id}')"><td>${esc(p.name)}<td>${roles(p)}<td>${c.ovr}<td>${fp(c.pot,c.plus)}<td><small>${p.ovr0}/${fp(p.pot0,p.plus0)}</small><td>${v?dl(c.pot-v.pot):'–'}<td><small>${p.status}</small></tr>`}).join('')||'<tr><td>Nessun risultato</tr>'}</table>`}
-function chart(p){const h=p.hist,v=h.flatMap(x=>[x.ovr,x.pot]),mn=Math.min(...v)-3,mx=Math.max(...v)+3,W=320,H=130,X=i=>20+(h.length>1?i*(W-40)/(h.length-1):(W-40)/2),Y=y=>H-15-(y-mn)/(mx-mn)*(H-30);
-const ln=(k,c)=>`<polyline class=dr pathLength=1 fill=none stroke="${c}" stroke-width=2 points="${h.map((x,i)=>X(i)+','+Y(x[k])).join(' ')}"/>`+h.map((x,i)=>`<circle cx=${X(i)} cy=${Y(x[k])} r=3 fill="${c}"/><text x=${X(i)} y=${Y(x[k])-6} font-size=9 text-anchor=middle fill="${c}">${x[k]}</text>`).join('');
-return `<svg viewBox="0 0 ${W} ${H}" width=100%>${ln('ovr','#2f8fd0')}${ln('pot','#e8963a')}<line x1=10 x2=${W-10} y1=${Y(p.pot0)} y2=${Y(p.pot0)} stroke=gray stroke-dasharray="3 3"/><text x=14 y=${H-2} font-size=9 fill=gray>blu OVR · arancio POT · tratteggio POT iniziale</text></svg>`}
-function showP(id){const p=gp(id),n=p.hist.length,c=cur(p);
-modal(`<h3>${esc(p.name)} <small>${roles(p)} · ${p.status}</small></h3><p class=mu>Registrato: ${p.regS}, ${p.reg}. Iniziale: OVR ${p.ovr0} · POT ${fp(p.pot0,p.plus0)}${p.plus0?' (almeno, valore esatto incerto)':''}${p.buy?` · Acquisto ${p.buy.d} ${p.buy.price??''}`:''}${p.sell?` · Cessione ${p.sell.d} ${p.sell.price??''}`:''}</p>
-<div class=sc><table><tr><th>Stagione<th>OVR<th>Δprec<th>Δiniz<th>POT<th>Δprec<th>Δiniz</tr>${p.hist.map((x,i)=>{const q=i?p.hist[i-1]:null;return `<tr><td>${esc(x.s)}<td>${x.ovr}<td>${q?dl(x.ovr-q.ovr):'–'}<td>${i?dl(x.ovr-p.ovr0):'–'}<td>${fp(x.pot,x.plus)}<td>${q?dl(x.pot-q.pot):'–'}<td>${i?dl(x.pot-p.pot0):'–'}</tr>`}).join('')}</table></div>${chart(p)}
-${p.loans.length?'<h4>Prestiti</h4>'+p.loans.map(l=>`<small>${l.from} → ${l.to||'?'}${l.ret?' (rientrato '+l.ret+')':''}</small>`).join('<br>'):''}
-<h4>Aggiorna valori · ${esc(p.hist[n-1].s)}</h4><div class=bar><input id=vo type=number min=1 max=99 value=${c.ovr} style="width:70px"><input id=vp type=number min=1 max=99 value=${c.pot} style="width:70px"><label><input id=vx type=checkbox ${c.plus?'checked':''}> POT "+"</label><button class=pri onclick="svV('${id}')">Salva</button></div>
-<h4>Note</h4><textarea id=nt>${esc(p.note)}</textarea><button onclick="svN('${id}')">Salva note</button>
-<details><summary>Correggi valori iniziali (solo errori)</summary><div class=bar><input id=io0 type=number value=${p.ovr0} style="width:70px"><input id=ip0 type=number value=${p.pot0} style="width:70px"><label><input id=ix0 type=checkbox ${p.plus0?'checked':''}> "+"</label><button onclick="svI('${id}')">Correggi</button></div></details>
-<p><button class=dng onclick="delP('${id}')">Elimina record</button> <button onclick="cm()">Chiudi</button></p>`)}
-const okv=v=>v>=1&&v<=99;
-function svV(id){const o=+$('vo').value,q=+$('vp').value,x=$('vx').checked;if(!okv(o)||!okv(q))return toast('Valori 1–99');cfm('Aggiornare OVR/POT della stagione corrente? Il valore precedente finisce nel registro.',()=>{const p=gp(id),c=cur(p);lg(`${p.name} ${c.s}: ${c.ovr}/${fp(c.pot,c.plus)} → ${o}/${fp(q,x)}`);c.ovr=o;c.pot=q;c.plus=x;save();showP(id);R()})}
-function svI(id){const o=+$('io0').value,q=+$('ip0').value,x=$('ix0').checked;if(!okv(o)||!okv(q))return toast('Valori 1–99');cfm('Correggere i valori INIZIALI? Operazione eccezionale, resta nel registro.',()=>{const p=gp(id);lg(`${p.name} correzione iniziali ${p.ovr0}/${fp(p.pot0,p.plus0)} → ${o}/${fp(q,x)}`);p.ovr0=o;p.pot0=q;p.plus0=x;p.hist[0]={...p.hist[0],ovr:o,pot:q,plus:x};save();showP(id);R()})}
-function svN(id){gp(id).note=$('nt').value;save();toast('Note salvate')}
-function delP(id){cfm('Eliminare definitivamente il record e tutto il suo storico? (Per una cessione usa il Mercato.)',()=>{S.players=S.players.filter(p=>p.id!=id);S.forms.forEach(f=>{f.slots=f.slots.map(s=>s==id?null:s);f.bench=f.bench.filter(b=>b!=id)});lg('Eliminato record '+id);save();cm();R()})}
-function ns(){modal(`<h3>Nuova stagione</h3><input id=nsn value="Stagione ${S.seasons.length+1}"><p class=mu>I valori correnti vengono copiati come punto di partenza; poi li aggiorni a mano dalla scheda giocatore.</p><button class=pri onclick="doNs()">Crea</button> <button onclick="cm()">Annulla</button>`)}
-function doNs(){const n=$('nsn').value.trim();if(!n||S.seasons.includes(n))return toast('Nome non valido o già usato');S.seasons.push(n);S.players.forEach(p=>{if(p.status=='attivo'||p.status=='prestito')p.hist.push({...cur(p),s:n})});lg('Nuova stagione '+n);save();cm();R()}
-/* MERCATO */
-function vMer(){const A=S.players.filter(p=>p.status=='attivo'),sel=`<select id=%>${A.map(p=>`<option value=${p.id}>${esc(p.name)}</option>`).join('')}</select>`,I=(i,pl,t='text',w='')=>`<input id=${i} placeholder="${pl}" type=${t} style="${w}">`;
-return `<div class=card><h4>Acquisto</h4><div class=bar>${I('bn','Nome (A. Bauer)')}<select id=br>${opts(ROLES)}</select>${I('bs','Sec. (es. AS/COC)')}${I('bo','OVR','number','width:70px')}${I('bp','POT','number','width:70px')}<label><input id=bx type=checkbox> POT "+"</label>${I('bpr','Prezzo','number','width:100px')}<input id=bd type=date value=${today()}><button class=pri onclick="buy()">Acquista</button></div></div>
-<div class=card><h4>Cessione</h4><div class=bar>${sel.replace('%','sp')}${I('spr','Prezzo','number','width:100px')}<input id=sd type=date value=${today()}><button onclick="sell()">Cedi</button></div></div>
-<div class=card><h4>Prestito</h4><div class=bar>${sel.replace('%','lp')}<input id=l1 type=date value=${today()}><input id=l2 type=date><button onclick="loan()">Presta</button></div>${S.players.filter(p=>p.status=='prestito').map(p=>`<p>${esc(p.name)} <small>dal ${p.loans.at(-1).from}</small> <button onclick="ret('${p.id}')">Rientro</button></p>`).join('')}</div>
-<div class=card><h4>Storico cessioni</h4>${S.players.filter(p=>p.status=='ceduto').map(p=>`<p class=cl onclick="showP('${p.id}')">${esc(p.name)} <small>${roles(p)} · iniz. ${p.ovr0}/${fp(p.pot0,p.plus0)} ${p.sell?.d||''}</small></p>`).join('')||'<small>Nessuna</small>'}</div>`}
-function buy(){const n=$('bn').value.trim(),o=+$('bo').value,q=+$('bp').value;if(!n||!okv(o)||!okv(q))return toast('Nome, OVR e POT (1–99) obbligatori');
-if(S.players.some(p=>p.name.toLowerCase()==n.toLowerCase()&&p.status!='ceduto'))return toast('Giocatore già presente');
-const sec=$('bs').value.split('/').map(x=>x.trim().toUpperCase()).filter(Boolean),p=mk([[$('br').value,...sec].join('/'),n,o,q,$('bx').checked],'attivo');p.regS=S.seasons.at(-1);p.hist[0].s=p.regS;p.buy={d:$('bd').value,price:$('bpr').value?+$('bpr').value:null};lg('Acquisto '+n);S.players.push(p);save();toast('Acquistato');R()}
-function rmF(id){S.forms.forEach(f=>{f.slots=f.slots.map(s=>s==id?null:s);f.bench=f.bench.filter(b=>b!=id)})}
-function sell(){const id=$('sp')?.value;if(!id)return;cfm('Cedere il giocatore? Resterà nello storico.',()=>{const p=gp(id);p.status='ceduto';p.sell={d:$('sd').value,price:$('spr').value?+$('spr').value:null};rmF(id);lg('Cessione '+p.name);save();R()})}
-function loan(){const id=$('lp')?.value;if(!id)return;const p=gp(id);p.status='prestito';p.loans.push({from:$('l1').value,to:$('l2').value});rmF(id);lg('Prestito '+p.name);save();R()}
-function ret(id){const p=gp(id);p.status='attivo';p.loans.at(-1).ret=today();lg('Rientro '+p.name);save();R()}
-/* FORMAZIONI */
-const gf=()=>S.forms.find(f=>f.id==FID);
+function tbl(){const k={ovr:p=>-p.ovr,pot:p=>-p.pot,val:p=>-(p.val||0),wage:p=>-(p.wage||0),yrs:p=>p.yrs??99,age:p=>p.age??99,n:p=>p.name}[F.sort];
+const L=S.players.filter(p=>(F.l=='tutti'||p.list==F.l)&&(!F.role||can(p,F.role))&&p.name.toLowerCase().includes(F.q.toLowerCase())).sort((a,b)=>k(a)>k(b)?1:-1);
+return `<table><tr><th>Giocatore<th>Ruolo<th>Età<th>OVR<th>POT<th>Valore<th>Stip.<th>Contratto<th>Lista</tr>${L.map(p=>`<tr class=cl onclick="edP('${p.id}')"><td>${p.inj?'🩹 ':''}${esc(p.name)}<td>${[p.role,...p.sec].join('/')}<td>${p.age??'–'}<td>${rb(p.ovr)}<td>${rb(p.pot)}${p.plus?'+':''}<td>${fm(p.val)}<td>${fm(p.wage)}<td><small>${esc(p.ct)}${p.yrs!=null?' · '+p.yrs+'a':''}</small><td onclick="event.stopPropagation()"><select onchange="mv('${p.id}',this.value)">${lopt(p.list)}</select></tr>`).join('')||'<tr><td>Nessun giocatore</tr>'}</table>`}
+function mv(id,l){const p=gp(id);p.list=l;lg(p.name+' → '+LS[l]);save();tb()}
+function edP(id){const n=!id,p=id?gp(id):{name:'',role:'DC',sec:[],age:'',ovr:'',pot:'',plus:false,val:'',wage:'',ct:CT[0],yrs:'',list:'rosa',inj:false,note:'',hist:[]};
+const I=(i,l,v,t='text')=>`<label class=f><small>${l}</small><input id=${i} type=${t} value="${esc(v??'')}"></label>`,C=(i,l,c)=>`<label class=f><small>${l}</small><input id=${i} type=checkbox ${c?'checked':''}></label>`;
+modal(`<h3>${n?'Nuovo giocatore':esc(p.name)}</h3><div class=fg>${I('fn','Nome (A. Bauer)',p.name)}<label class=f><small>Ruolo</small><select id=fr>${opts(RO,p.role)}</select></label>${I('fs','Ruoli sec. (es. AS/COC)',p.sec.join('/'))}${I('fa','Età',p.age,'number')}${I('fo','OVR',p.ovr,'number')}${I('fp','POT',p.pot,'number')}${C('fx','POT "+" (incerto)',p.plus)}${I('fv','Valore (es. 2.5M)',p.val)}${I('fw','Stipendio/sett. (es. 15k)',p.wage)}<label class=f><small>Tipo contratto</small><select id=fc>${opts(CT,p.ct)}</select></label>${I('fy','Anni residui',p.yrs,'number')}<label class=f><small>Lista</small><select id=fl>${lopt(p.list)}</select></label>${C('fj','Infortunato',p.inj)}${n?I('fpr','Prezzo pagato (opz.)','' ):''}</div><textarea id=fnt placeholder="Note">${esc(p.note)}</textarea>
+${!n?`<h4>Storico stagioni</h4><div class=sc><table><tr><th>Stagione<th>OVR<th>POT<th>ΔOVR iniz.<th>ΔPOT iniz.</tr>${p.hist.map(h=>`<tr><td>${esc(h.s)}<td>${h.ovr}<td>${h.pot}${h.plus?'+':''}<td>${h.ovr-p.ovr0}<td>${h.pot-p.pot0}</tr>`).join('')}</table></div><small>Iniziale: OVR ${p.ovr0} · POT ${p.pot0}${p.plus0?'+':''} (non modificabile)</small>`:''}
+<p><button class=pri onclick="svP('${id||''}')">Salva</button> <button onclick="cm()">Chiudi</button> ${n?'':`<button class=dng onclick="delP('${id}')">Elimina</button>`}</p>`)}
+function svP(id){const g=i=>$(i).value.trim(),nm=g('fn'),o=+g('fo'),q=+g('fp'),ok=v=>v>=1&&v<=99;if(!nm||!ok(o)||!ok(q))return toast('Nome, OVR e POT (1–99) obbligatori');
+if(!id&&S.players.some(p=>p.name.toLowerCase()==nm.toLowerCase()&&p.list!='ceduto'))return toast('Giocatore già presente');
+const sec=g('fs').split('/').map(x=>x.trim().toUpperCase()).filter(Boolean),f={name:nm,role:g('fr'),sec,age:g('fa')?+g('fa'):null,ovr:o,pot:q,plus:$('fx').checked,val:pm(g('fv')),wage:pm(g('fw')),ct:g('fc'),yrs:g('fy')!==''?+g('fy'):null,list:g('fl'),inj:$('fj').checked,note:$('fnt').value};
+if(id){const p=gp(id);Object.assign(p,f);Object.assign(p.hist[p.hist.length-1],{ovr:o,pot:q,plus:f.plus});lg('Modificato '+nm)}
+else{const p=mk([f.role,nm,o,q,f.plus]);Object.assign(p,f,{ovr0:o,pot0:q,plus0:f.plus,hist:[{s:sea(),ovr:o,pot:q,plus:f.plus}]});S.players.push(p);const pr=pm($('fpr')?.value);lg('Nuovo '+nm+(pr?' (acquisto)':''),pr?-pr:0)}
+save();cm();R()}
+const delP=id=>cfm('Eliminare definitivamente il giocatore e il suo storico? (Per una cessione usa la lista Archivio.)',()=>{S.players=S.players.filter(p=>p.id!=id);save();cm();R()});
+function vCon(){return vCon0()+revCard()}
+function vCon0(){const L=S.players.filter(p=>['rosa','prestiti'].includes(p.list)).sort((a,b)=>(a.yrs??99)-(b.yrs??99));
+return `<div class=card><small>Ordinati per scadenza. In rosso: scaduti o ultimo anno.</small><div class=sc><table><tr><th>Giocatore<th>Tipo<th>Anni<th>Stip./sett.<th>Valore<th></tr>${L.map(p=>`<tr><td>${esc(p.name)}<td><small>${esc(p.ct)}</small><td class="${p.yrs!=null&&p.yrs<=1?'dn':''}">${p.yrs==null?'–':p.yrs==0?'SCADUTO':p.yrs}<td>${fm(p.wage)}<td>${fm(p.val)}<td><button onclick="rin('${p.id}')">Rinnova</button></tr>`).join('')}</table></div></div>`}
+function rin(id){const p=gp(id);modal(`<h3>Rinnovo ${esc(p.name)}</h3><div class=fg><label class=f><small>Anni residui</small><input id=ry type=number value="${p.yrs??''}"></label><label class=f><small>Stipendio/sett.</small><input id=rw value="${p.wage??''}"></label></div><p><button class=pri onclick="doRin('${id}')">Salva</button> <button onclick="cm()">Annulla</button></p>`)}
+function doRin(id){const p=gp(id);p.yrs=$('ry').value!==''?+$('ry').value:null;p.wage=pm($('rw').value);lg('Rinnovo '+p.name);save();cm();R()}
+function vMer(){const sal=S.log.reduce((a,l)=>a+l.amt,0),pl=S.players.filter(p=>p.list!='ceduto');
+return `<div class=card><h4>Budget</h4><div class=bar><label class=f><small>Budget trasferimenti iniziale</small><input value="${S.bud??''}" onchange="S.bud=pm(this.value);save();R()"></label><label class=f><small>Budget stipendi/sett.</small><input value="${S.wb??''}" onchange="S.wb=pm(this.value);save();R()"></label></div><b>Residuo: ${fm(S.bud==null?null:S.bud+sal)}</b> <small>· saldo movimenti ${fm(sal)}</small></div>
+<div class=card><h4>Acquisto</h4><button class=pri onclick="edP()">+ Nuovo giocatore acquistato</button></div>
+<div class=card><h4>Cessione</h4><div class=bar><select id=cs>${pl.map(p=>`<option value=${p.id}>${esc(p.name)}</option>`).join('')}</select><input id=cp placeholder="Incasso (es. 3M)" style="width:130px"><button onclick="sell()">Cedi</button></div></div>
+<div class=card><h4>Movimenti</h4>${S.log.filter(l=>l.amt).slice(0,30).map(l=>`<small>${l.d} · ${esc(l.t)} <b class="${l.amt>0?'up':'dn'}">${fm(l.amt)}</b></small>`).join('<br>')||'<small>Nessun movimento economico</small>'}</div>`}
+function sell(){const id=$('cs')?.value;if(!id)return;const p=gp(id),a=pm($('cp').value)||0;cfm(`Cedere ${p.name}? Va in Archivio con tutto lo storico.`,()=>{p.list='ceduto';lg('Cessione '+p.name,a);save();R()})}
+function ns(){modal(`<h3>Nuova stagione</h3><input id=nsn value="Stagione ${S.seasons.length+1}"><p class=mu><small>Per i giocatori non in Archivio: copia OVR/POT nello storico, età +1, anni di contratto −1. Poi aggiorna i valori a mano.</small></p><button class=pri onclick="doNs()">Crea</button> <button onclick="cm()">Annulla</button>`)}
+function doNs(){const n=$('nsn').value.trim();if(!n||S.seasons.includes(n))return toast('Nome non valido o già usato');S.seasons.push(n);S.players.forEach(p=>{if(p.list=='ceduto')return;p.hist.push({s:n,ovr:p.ovr,pot:p.pot,plus:p.plus});if(p.age!=null)p.age++;if(p.yrs!=null)p.yrs=Math.max(0,p.yrs-1)});lg('Nuova stagione '+n);save();cm();R()}
+const MG={14:35,15:30,16:27,17:25};let V={n:'',a:15,mo:'',xo:'',mp:'',xp:''};
+function vcalc(){if(V.mo===''||V.mp==='')return null;const a=+V.a,mo=+V.mo,mp=+V.mp,th=MG[a],g=mp-mo;return{a,mo,mp,g,th,ok:g>=th,d:g-th}}
+function vres(){const r=vcalc();if(!r)return '<p class=mu><small>Inserisci OVR minimo e POT minimo del rapporto dello scout.</small></p>';
+return `<p>${r.mp} (POT min) − ${r.mo} (OVR min) = <b>${r.g}</b> · soglia a ${r.a} anni: ≥${r.th}</p><p>${r.ok?`<b class=up>✅ POT 90+ garantito</b> (${r.d>=0?'+'+r.d:r.d} rispetto alla soglia)`:`<b class=dn>❌ Non garantito</b> (mancano ${-r.d} punti di margine)`}</p>`}
+const vin=(k,v)=>{V[k]=v;$('vr').innerHTML=vres()};
+function vVi(){const I=(k,l,t='number')=>`<label class=f><small>${l}</small><input type=${t} value="${esc(V[k])}" oninput="vin('${k}',this.value)"></label>`;
+return `<div class=card><h4>Controllo POT 90+ · giocatori del vivaio</h4><small>Margine = POT minimo − OVR minimo dello scout. Soglie per garantire 90+: ${Object.entries(MG).map(([a,t])=>a+' anni ≥'+t).join(' · ')}.</small><div class=fg><label class=f><small>Età</small><select onchange="V.a=+this.value;$('vr').innerHTML=vres()">${[14,15,16,17].map(a=>`<option ${V.a==a?'selected':''}>${a}</option>`).join('')}</select></label>${I('mo','OVR minimo')}${I('mp','POT minimo')}</div><div id=vr>${vres()}</div></div>`}
+/*FOR*/
+const FM={'4-2-3-1':'POR|TS DC DC TD|CDC CDC|AS COC AD|ATT','4-2-1-3':'POR|TS DC DC TD|CDC CDC|COC|AS ATT AD','4-3-3':'POR|TS DC DC TD|CC CDC CC|AS ATT AD','4-4-2':'POR|TS DC DC TD|AS CC CC AD|ATT ATT','3-5-2':'POR|DC DC DC|TS CC CDC CC TD|ATT ATT','4-1-4-1':'POR|TS DC DC TD|CDC|AS CC CC AD|ATT'};
+const PR={'Equilibrata':['Equilibrato','Equilibrato','Media'],'Contropiede':['Contropiede','Arretrato','Bassa'],'Possesso palla':['Possesso','Equilibrato','Media'],'Pressing alto':['Equilibrato','Pressing alto','Alta'],'Difensiva':['Equilibrato','Arretrato','Bassa']};
+const STL=['Equilibrato','Possesso','Contropiede','Palla lunga'],DFL=['Equilibrato','Pressing alto','Arretrato'],LNL=['Bassa','Media','Alta'];
+function sl(m){const rows=FM[m].split('|'),o=[];rows.forEach((r,i)=>{const a=r.split(' ');a.forEach((ro,j)=>o.push({r:ro,x:(j+1)/(a.length+1)*100,y:92-i*(76/(rows.length-1))}))});return o}
+let FID=null,FF={role:'',pot:0};
+const gf=()=>S.forms.find(f=>f.id==FID),inR=id=>{const p=id&&gp(id);return p&&p.list=='rosa'?p:null};
 function newF(){const f={id:uid(),name:'Formazione '+(S.forms.length+1),mod:'4-2-3-1',slots:Array(11).fill(null),bench:[],style:'Equilibrato',def:'Equilibrato',line:'Media',src:'manuale',roles:'',note:''};S.forms.push(f);FID=f.id;save();R()}
 function ff(k,v){const f=gf();f[k]=v;if(['style','def','line'].includes(k))f.src='manuale';save();R()}
 const fs=(k,v)=>{gf()[k]=v;save()};
-function setMod(m){const f=gf();const go=()=>{f.mod=m;f.slots=Array(11).fill(null);save();R()};f.slots.some(Boolean)?cfm('Cambiare modulo azzera gli slot assegnati. Continuare?',go):go()}
-function setSl(i,v){const f=gf();if(v&&f.slots.some((s,j)=>s==v&&j!=i))return toast('Giocatore già schierato');f.slots[i]=v||null;f.bench=f.bench.filter(b=>b!=v);save();R()}
+function setMod(m){const f=gf(),d=()=>{f.mod=m;f.slots=Array(11).fill(null);save();R()};f.slots.some(x=>inR(x))?cfm('Cambiare modulo azzera gli slot assegnati. Continuare?',d):d()}
+function setSl(i,v){const f=gf();if(v&&f.slots.some((x,j)=>x==v&&j!=i))return toast('Giocatore già schierato');f.slots[i]=v||null;f.bench=f.bench.filter(b=>b!=v);save();R()}
 function bn(id){const f=gf();f.bench=f.bench.includes(id)?f.bench.filter(b=>b!=id):[...f.bench,id];save();R()}
 function preset(k){const f=gf();[f.style,f.def,f.line]=PR[k];f.src='Preset "'+k+'" (suggerimento app)';save();R()}
-function delF(){cfm('Eliminare questa formazione?',()=>{S.forms=S.forms.filter(f=>f.id!=FID);FID=null;save();R()})}
-function vFor(){const top=`<div class=bar><select onchange="FID=this.value;R()">${S.forms.map(f=>`<option value=${f.id} ${f.id==FID?'selected':''}>${esc(f.name)}</option>`).join('')}</select><button class=pri onclick="newF()">+ Nuova</button></div>`;
-if(!S.forms.length)return top+'<p>Nessuna formazione salvata.</p>';
-const f=gf()||(FID=S.forms[0].id,S.forms[0]),s=sl(f.mod),A=S.players.filter(p=>p.status=='attivo'),used=f.slots.filter(Boolean),miss=s.filter((_,i)=>!f.slots[i]).map(x=>x.r);
-const pitch=s.map((q,i)=>{const p=f.slots[i]&&gp(f.slots[i]);return `<div class="pn ${p&&!can(p,q.r)?'wr':''}" style="left:${q.x}%;top:${q.y}%"><b>${q.r}</b>${p?`<br>${esc(p.name)}<br><small style="color:#ddd">${cur(p).ovr}/${fp(cur(p).pot,cur(p).plus)}</small>`:'<br>—'}</div>`}).join('');
-const rows=s.map((q,i)=>{const cs=f.slots[i],p=cs&&gp(cs),L=A.filter(x=>x.id==cs||(!used.includes(x.id)&&(!FF.role||can(x,FF.role))&&cur(x).pot>=FF.pot)).sort((a,b)=>can(b,q.r)-can(a,q.r)||cur(b).pot-cur(a).pot);
-return `<div class=row><span class=rl>${q.r}</span><select onchange="setSl(${i},this.value)"><option value="">— vuoto —</option>${L.map(x=>`<option value=${x.id} ${x.id==cs?'selected':''}>${can(x,q.r)?'✓':'⚠'} ${esc(x.name)} ${cur(x).ovr}/${fp(cur(x).pot,cur(x).plus)}</option>`).join('')}</select>${p&&!can(p,q.r)?'<small class=dn>fuori ruolo</small>':''}</div>`}).join('');
-return top+`<div class=bar><input value="${esc(f.name)}" onchange="fs('name',this.value)"><select onchange="setMod(this.value)">${opts(Object.keys(FM),f.mod)}</select><button class=dng onclick="delF()">Elimina</button></div><div class=pitch>${pitch}</div>
-<p>${miss.length?`<b class=dn>Posizioni scoperte (${miss.length}):</b> ${miss.join(', ')}`:'<b class=up>Undici completo</b>'}</p>
-<div class=card><div class=bar><small>Filtra elenco giocatori:</small><select onchange="FF.role=this.value;R()"><option value="">Ruolo</option>${opts(ROLES,FF.role)}</select><select onchange="FF.pot=+this.value;R()">${[0,80,85,90,95].map(x=>`<option value=${x} ${FF.pot==x?'selected':''}>POT ≥${x}</option>`).join('')}</select></div>${rows}</div>
+const delF=()=>cfm('Eliminare questa formazione?',()=>{S.forms=S.forms.filter(f=>f.id!=FID);FID=null;save();R()});
+function vFor(){const top=`<div class=bar>${S.forms.length?`<select onchange="FID=this.value;R()">${S.forms.map(f=>`<option value=${f.id} ${f.id==FID?'selected':''}>${esc(f.name)}</option>`).join('')}</select>`:''}<button class=pri onclick="newF()">+ Nuova formazione</button></div>`;
+if(!S.forms.length)return top+'<div class=card><small>Nessuna formazione salvata. Creane una e schiera i giocatori della Rosa.</small></div>';
+const f=gf()||(FID=S.forms[0].id,S.forms[0]),s=sl(f.mod),A=S.players.filter(p=>p.list=='rosa'),used=f.slots.filter(x=>inR(x)),miss=s.filter((_,i)=>!inR(f.slots[i])).map(x=>x.r),rt=p=>p.ovr+'/'+p.pot+(p.plus?'+':'');
+const pitch=s.map((q,i)=>{const p=inR(f.slots[i]);return `<div class="pn2 ${p&&!can(p,q.r)?'wr':''}" style="left:${q.x}%;top:${q.y}%"><small>${q.r}</small>${p?`<br>${esc(p.name)}<br><small>${rt(p)}</small>`:'<br>—'}</div>`}).join('');
+const rows=s.map((q,i)=>{const cs=inR(f.slots[i])?f.slots[i]:'',p=cs&&gp(cs),L=A.filter(x=>x.id==cs||(!used.includes(x.id)&&(!FF.role||can(x,FF.role))&&x.pot>=FF.pot)).sort((a,b)=>can(b,q.r)-can(a,q.r)||b.pot-a.pot);
+return `<div class=row><span class=rl>${q.r}</span><select onchange="setSl(${i},this.value)"><option value="">— vuoto —</option>${L.map(x=>`<option value=${x.id} ${x.id==cs?'selected':''}>${can(x,q.r)?'✓':'⚠'} ${x.inj?'🩹 ':''}${esc(x.name)} ${rt(x)}</option>`).join('')}</select>${p&&!can(p,q.r)?'<small class=dn>fuori ruolo</small>':''}</div>`}).join('');
+return top+`<div class=bar><input value="${esc(f.name)}" onchange="fs('name',this.value)"><select onchange="setMod(this.value)">${opts(Object.keys(FM),f.mod)}</select><button class=dng onclick="delF()">Elimina</button></div><div class=fld>${pitch}</div>
+<p>${miss.length?`<b class=dn>Posizioni scoperte (${miss.length}):</b> ${miss.join(', ')}`:'<b class=up>Undici completo</b>'}${A.length?'':' <small>(nessun giocatore in Rosa)</small>'}</p>
+<div class=card><div class=bar><small>Filtra l'elenco:</small><select onchange="FF.role=this.value;R()"><option value="">Ruolo</option>${opts(RO,FF.role)}</select><select onchange="FF.pot=+this.value;R()">${[0,80,85,90,95].map(x=>`<option value=${x} ${FF.pot==x?'selected':''}>POT ≥${x}</option>`).join('')}</select></div>${rows}</div>
 <div class=card><h4>Riserve</h4>${A.filter(p=>!used.includes(p.id)).map(p=>`<button class="chip ${f.bench.includes(p.id)?'on':''}" onclick="bn('${p.id}')">${esc(p.name)}</button>`).join('')||'<small>Nessun giocatore libero</small>'}</div>
-<div class=card><h4>Tattiche</h4><p class=mu><small>Impostazioni inserite da te (non verificate per FC 27). Origine: ${esc(f.src)}</small></p><div class=bar>${PR&&Object.keys(PR).map(k=>`<button onclick="preset('${k}')">${k}</button>`).join('')}</div><small>I preset sono suggerimenti dell'app, modificabili, senza garanzia di risultati.</small>
-<div class=bar><label>Costruzione <select onchange="ff('style',this.value)">${opts(ST,f.style)}</select></label><label>Difesa <select onchange="ff('def',this.value)">${opts(DF,f.def)}</select></label><label>Linea difensiva <select onchange="ff('line',this.value)">${opts(LN,f.line)}</select></label></div>
+<div class=card><h4>Tattiche</h4><small>Impostazioni inserite da te, non verificate per FC 27. Origine: ${esc(f.src)}</small><div class=bar style="margin-top:8px">${Object.keys(PR).map(k=>`<button onclick="preset('${k}')">${k}</button>`).join('')}</div><small>I preset sono suggerimenti dell'app, modificabili, senza garanzia di risultati.</small>
+<div class=bar style="margin-top:8px"><label class=f><small>Costruzione</small><select onchange="ff('style',this.value)">${opts(STL,f.style)}</select></label><label class=f><small>Difesa</small><select onchange="ff('def',this.value)">${opts(DFL,f.def)}</select></label><label class=f><small>Linea difensiva</small><select onchange="ff('line',this.value)">${opts(LNL,f.line)}</select></label></div>
 <small>Ruoli individuali e compiti (testo libero)</small><textarea onchange="fs('roles',this.value)">${esc(f.roles)}</textarea><small>Note</small><textarea onchange="fs('note',this.value)">${esc(f.note)}</textarea></div>`}
-/* OBIETTIVI */
-function vObi(){const A=S.players.filter(p=>p.status=='attivo'),E=A.filter(p=>cur(p).pot>=G.t),s=sl(G.m),ms=match(E,s),un=[];
-const rows=s.map((q,i)=>{const p=ms[i]>=0&&E[ms[i]];if(!p)un.push(q.r);const best=!p&&A.filter(x=>can(x,q.r)).sort((a,b)=>cur(b).pot-cur(a).pot)[0];return `<tr><td>${q.r}<td>${p?esc(p.name)+' '+fp(cur(p).pot,cur(p).plus)+(cur(p).plus?' <small>(almeno '+cur(p).pot+', esatto incerto)</small>':''):`<b class=dn>SCOPERTO</b>${best?` <small>miglior opzione: ${esc(best.name)} POT ${fp(cur(best).pot,cur(best).plus)}</small>`:''}`}</tr>`}).join('');
-const pri={};un.forEach(r=>pri[r]=(pri[r]||0)+1);
-return `<div class=bar><label>Soglia POT <input type=number min=60 max=99 value=${G.t} style="width:70px" onchange="G.t=+this.value;R()"></label>${[80,85,90,95].map(x=>`<button class="${G.t==x?'on':''}" onclick="G.t=${x};R()">${x}+</button>`).join('')}<select onchange="G.m=this.value;R()">${opts(Object.keys(FM),G.m)}</select></div>
-<div class=card><b>Obiettivo: 11 titolari con POT ${G.t}+ → coperti ${11-un.length}/11</b><p class=mu><small>Giocatori idonei: ${E.length} su ${A.length}. Un giocatore occupa una sola posizione.</small></p><div class=sc><table>${rows}</table></div></div>
-<div class=card><h4>Priorità di mercato</h4>${Object.entries(pri).sort((a,b)=>b[1]-a[1]).map(([r,n])=>`${n}× ${r} con POT ${G.t}+`).join('<br>')||'<span class=up>Nessuna: obiettivo raggiunto</span>'}</div>`}
-/* DATI */
-function vDat(){return `<div class=card><h4>Backup e ripristino</h4><p class=mu><small>Dati salvati nel browser (localStorage). Il backup compare nella casella sotto: copialo e conservalo in un file di testo. Per ripristinare incolla il JSON o scegli un file.</small></p>
-<div class=bar><button class=pri onclick="exJ()">Backup completo (JSON)</button><button onclick="exC()">Rosa CSV</button><button onclick="cp()">Copia</button><button onclick="imp()">Ripristina</button><button onclick="test()">Autotest</button></div>
-<input type=file accept=".json,.txt" onchange="fl(this)"><textarea id=io style="min-height:160px"></textarea><button class=dng onclick="rst()">Reimposta dati iniziali</button></div>
-<div class=card><h4>Registro modifiche</h4>${S.log.slice(0,20).map(l=>`<small>${l.d} · ${esc(l.t)}</small>`).join('<br>')||'<small>Vuoto</small>'}</div>`}
+function todo(){const Rs=S.players.filter(p=>p.list=='rosa'),o=[],w=Rs.reduce((a,p)=>a+(p.wage||0),0),res=S.bud==null?null:S.bud+S.log.reduce((a,l)=>a+l.amt,0),nm=L=>L.map(p=>esc(p.name)).join(', '),C=S.players.filter(p=>['rosa','prestiti'].includes(p.list));
+const sc=C.filter(p=>p.yrs===0),ul=C.filter(p=>p.yrs===1),thin=RO.filter(r=>!['ES','ED'].includes(r)&&Rs.filter(p=>can(p,r)).length<2),inj=Rs.filter(p=>p.inj),mis=Rs.filter(p=>p.age==null||p.val==null||p.wage==null||p.yrs==null).length;
+if(sc.length)o.push(['🔴','Contratto scaduto: '+nm(sc)+'. Rinnova o cedi.','con']);
+if(ul.length)o.push(['🟠','Ultimo anno di contratto: '+nm(ul)+'.','con']);
+if(Rs.length&&thin.length)o.push(['🟠','Ruoli con meno di 2 giocatori: '+thin.join(', ')+'.','db']);
+if(S.wb&&w>S.wb)o.push(['🔴','Ingaggi sopra il budget stipendi: '+fm(w)+' su '+fm(S.wb)+'.','mer']);
+if(res!=null&&res<0)o.push(['🔴','Budget trasferimenti in negativo: '+fm(res)+'.','mer']);
+if(inj.length)o.push(['🩹','Infortunati: '+nm(inj)+'.','db']);
+if(mis)o.push(['ℹ️',mis+' giocatori in rosa con dati mancanti (età, valore, stipendio o contratto): completali per avvisi più precisi.','db']);
+return `<div class=card><h4>Cosa fare adesso</h4>${o.map(([i,t,k])=>`<p style="margin:6px 0">${i} ${t} <button onclick="go('${k}')">Vai</button></p>`).join('')||'<span class=up>✅ Tutto in ordine</span>'}</div>`}
+function rev(){const R_=S.players.filter(p=>p.list=='rosa'),mo=R_.reduce((a,p)=>a+p.ovr,0)/(R_.length||1),ws=R_.filter(p=>p.wage),mw=ws.reduce((a,p)=>a+p.wage,0)/(ws.length||1),o=[];
+R_.forEach(p=>{const ex=p.yrs!=null&&p.yrs<=1,good=p.pot>=85||p.ovr>=mo,low=p.ovr<mo;
+if(ex&&good)o.push({p,k:'Rinnova',w:'contratto in scadenza e giocatore di valore (POT ≥85 o OVR sopra la media)'});
+if(ex&&!good)o.push({p,k:'Vendi',w:'contratto in scadenza, POT <85 e OVR sotto la media: vendi prima che scada'});
+if(p.age>=30&&low&&!ex)o.push({p,k:'Vendi',w:'età ≥30 e OVR sotto la media: il valore calerà'});
+if(p.wage&&ws.length>2&&p.wage>=1.5*mw&&p.ovr<=mo)o.push({p,k:'Vendi',w:'stipendio ≥1,5× la media della rosa con OVR non sopra la media'});
+if(p.age>=24&&p.pot-p.ovr<=1&&low&&!p.plus)o.push({p,k:'Vendi',w:'ha raggiunto il potenziale (POT ≈ OVR) ed è sotto la media'})});return{o,mo}}
+function mvR(id){const p=gp(id);p.list='trasf';lg(p.name+' → '+LS.trasf);save();R()}
+function revCard(){const{o,mo}=rev();return `<div class=card><h4>Da vendere o rinnovare</h4><small>Suggerimenti da regole semplici sui dati inseriti (OVR medio rosa: ${mo.toFixed(1)}). Decidi tu.</small>${o.length?`<div class=sc><table><tr><th>Giocatore<th>Azione<th>Motivo<th></tr>${o.map(x=>`<tr><td>${esc(x.p.name)}<td><span class="chip ${x.k=='Vendi'?'w':''}">${x.k}</span><td style="white-space:normal"><small>${x.w}</small><td>${x.k=='Rinnova'?`<button onclick="rin('${x.p.id}')">Rinnova</button>`:`<button onclick="mvR('${x.p.id}')">→ Lista trasf.</button>`}</tr>`).join('')}</table></div>`:'<p class=mu><small>Nessun giocatore da segnalare. Servono età, contratto e stipendio per i controlli.</small></p>'}</div>`}
+/*POS*/
+const AT=[['Attacco',[['cro','Cross'],['fin','Finalizzazione'],['hea','Prec. colpi di testa'],['sho','Passaggio corto'],['vol','Volée']]],['Abilità',[['dri','Dribbling'],['cur','Effetto'],['fka','Prec. punizioni'],['lop','Passaggio lungo'],['bc','Controllo palla']]],['Movimento',[['acc','Accelerazione'],['spr','Velocità sprint'],['agi','Agilità'],['rea','Reattività'],['bal','Equilibrio']]],['Forza',[['spw','Potenza di tiro'],['jum','Elevazione'],['sta','Resistenza'],['str','Forza'],['lsh','Tiri da lontano']]],['Mentalità',[['agg','Aggressività'],['com','Freddezza'],['int','Intercettazioni'],['att','Posiz. offensivo'],['vis','Visione di gioco'],['pen','Rigorista']]],['Difesa',[['dda','Consapevolezza dif.'],['tkl','Contrasto in piedi'],['sli','Scivolata']]],['Portiere',[['gdi','Tuffo'],['gha','Presa'],['gki','Rinvio'],['gpo','Posizionamento'],['gre','Riflessi']]]];
+const POS=['AS','ATT','AD','ES','COC','ED','CC','CDC','TS','DC','TD','POR'];
+const W1='dri:12,acc:11,spr:11,bc:10,cro:8,fin:8,att:8,agi:7,sho:6,rea:6,bal:5,spw:4,vis:4',W2='cro:11,dri:11,bc:10,acc:10,spr:10,sho:8,lop:6,sta:6,agi:7,vis:6,att:5,rea:5,bal:5',W3='tkl:11,dda:11,spr:9,acc:9,sta:9,cro:8,int:8,sho:6,sli:6,dri:5,bc:5,agg:4,rea:4,agi:5';
+const PW={ATT:'fin:19,att:14,com:9,bc:9,sho:7,acc:8,spr:8,spw:8,hea:5,dri:6,rea:7',AS:W1,AD:W1,ES:W2,ED:W2,COC:'vis:15,sho:13,bc:12,dri:10,att:9,rea:8,com:6,lop:5,agi:5,fin:5,acc:4,spw:4,lsh:4',CC:'sho:15,vis:11,bc:11,sta:9,dri:8,rea:7,lop:7,int:6,tkl:5,com:5,str:5,dda:5,bal:4,agg:2',CDC:'dda:13,tkl:12,int:12,sho:10,sta:9,str:9,agg:7,bc:6,lop:5,rea:5,com:4,sli:4,jum:4',TS:W3,TD:W3,DC:'dda:16,tkl:14,str:11,int:11,hea:10,jum:7,sli:6,agg:6,rea:5,com:4,sho:3,bc:3,spr:4',POR:'gdi:21,gha:21,gki:11,gpo:21,gre:26'};
+let Q={},C={r:'',o:''},_pt;
+function pcalc(){const res=POS.map(r=>{let s=0,t=0,ok=1;for(const x of PW[r].split(',')){const[k,w]=x.split(':'),v=+Q[k];if(!v){ok=0;break}s+=+w*v;t+=+w}return{r,v:ok?s/t:null}});
+const b=C.r&&C.o?res.find(x=>x.r==C.r):null;if(b&&b.v!=null){const off=+C.o-b.v;res.forEach(x=>{if(x.v!=null)x.v+=off})}
+res.forEach(x=>{if(x.v!=null)x.v=Math.max(1,Math.min(99,Math.round(x.v)))});return res}
+const PP={ATT:[50,9],AS:[14,17],AD:[86,17],COC:[50,29],ES:[10,42],ED:[90,42],CC:[50,50],CDC:[50,64],TS:[13,76],TD:[87,76],DC:[50,81],POR:[50,93]};
+function pres(){const r=pcalc(),mx=Math.max(0,...r.map(x=>x.v||0));return `<div class=fld><i class=fl style="left:28%;width:44%;top:0;height:13%"></i><i class=fl style="left:28%;width:44%;bottom:0;height:13%"></i><i class=fl style="left:0;right:0;top:47%;height:0"></i>${r.map(x=>`<div class="pn2 ${x.v&&x.v==mx?'best':''}" style="left:${PP[x.r][0]}%;top:${PP[x.r][1]}%"><small>${x.r}</small><br>${x.v==null?'–':rb(x.v)}</div>`).join('')}</div>`}
+function pin(k,v){Q[k]=v;clearTimeout(_pt);_pt=setTimeout(()=>{$('pr').innerHTML=pres()},500)}
+function pc(k,v){C[k]=v;$('pr').innerHTML=pres()}
+function vPos(){return `<div class=card><h4>Valutazione per posizione</h4><div id=pr>${pres()}</div><p class=mu><small>Una posizione mostra il valore solo se hai compilato tutti i suoi attributi (puoi riempire solo quelli che ti servono). La posizione cerchiata in verde è la migliore. Pesi stimati, non la formula ufficiale EA.</small></p>
+<div class=bar><label class=f><small>Calibra: posizione</small><select onchange="pc('r',this.value)"><option value="">–</option>${opts(POS,C.r)}</select></label><label class=f><small>OVR reale nel gioco</small><input type=number min=1 max=99 value="${esc(C.o)}" oninput="pc('o',this.value)" style="width:110px"></label><button onclick="Q={};C={r:'',o:''};R()">Azzera</button></div></div>
+${AT.map(([g,L])=>`<div class=card><h4>${g}</h4><div class=ig>${L.map(([k,l])=>`<label>${l}<input type=number inputmode=numeric min=1 max=99 value="${esc(Q[k]??'')}" oninput="pin('${k}',this.value)"></label>`).join('')}</div></div>`).join('')}`}
+/*END*/
+function vDat(){return `<div class=card><h4>Backup e ripristino</h4><p class=mu><small>Dati salvati sul dispositivo. Il backup compare nella casella: copialo in un file note. Per ripristinare incolla il JSON.</small></p><div class=bar><button class=pri onclick="exJ()">Backup (JSON)</button><button onclick="exC()">Rosa CSV</button><button onclick="cp()">Copia</button><button onclick="imp()">Ripristina</button></div><textarea id=io style="min-height:150px"></textarea><button class=dng onclick="rst()">Reimposta</button></div>
+<div class=card><h4>Registro</h4>${S.log.slice(0,20).map(l=>`<small>${l.d} · ${esc(l.t)}</small>`).join('<br>')||'<small>Vuoto</small>'}</div>`}
 const exJ=()=>{$('io').value=JSON.stringify(S,null,1);$('io').select()};
-function exC(){const q=v=>'"'+String(v??'').replace(/"/g,'""')+'"';$('io').value=['id,nome,ruolo,secondari,ovr_iniz,pot_iniz,ovr,pot,stato,stagione_reg,note',...S.players.map(p=>{const c=cur(p);return [p.id,p.name,p.role,p.sec.join('/'),p.ovr0,fp(p.pot0,p.plus0),c.ovr,fp(c.pot,c.plus),p.status,p.regS,p.note].map(q).join(',')})].join('\n')}
+function exC(){const q=v=>'"'+String(v??'').replace(/"/g,'""')+'"';$('io').value=['nome,ruolo,sec,eta,ovr,pot,valore,stipendio,contratto,anni,lista,infortunato',...S.players.map(p=>[p.name,p.role,p.sec.join('/'),p.age,p.ovr,p.pot+(p.plus?'+':''),p.val,p.wage,p.ct,p.yrs,LS[p.list],p.inj?'si':'no'].map(q).join(','))].join('\n')}
 function cp(){$('io').select();try{navigator.clipboard.writeText($('io').value);toast('Copiato')}catch(e){document.execCommand('copy')}}
-function fl(i){const r=new FileReader();r.onload=()=>$('io').value=r.result;if(i.files[0])r.readAsText(i.files[0])}
-function imp(){let j;try{j=JSON.parse($('io').value);if(!Array.isArray(j.players))throw 0}catch(e){return toast('Backup non valido')}cfm('Sostituire tutti i dati attuali con il backup?',()=>{S=mig(j);FID=null;save();R();toast('Ripristinato')})}
-function rst(){cfm('Cancellare TUTTO e tornare ai dati iniziali?',()=>{S=seed();FID=null;save();R()})}
-function test(){const s=seed(),r=[],ok=(n,c)=>r.push((c?'✅ ':'❌ ')+n),g=n=>s.players.find(p=>p.name==n);
-ok('14 attivi + 2 ceduti',s.players.filter(p=>p.status=='attivo').length==14&&s.players.filter(p=>p.status=='ceduto').length==2);
-ok('Bauer e Min Jun POT iniziale 95',g('A. Bauer').pot0==95&&g('K. Min Jun').pot0==95);
-const b=g('A. Bauer');b.hist.push({s:'S2',ovr:73,pot:92,plus:false});ok('POT attuale cambia, iniziale no',cur(b).pot==92&&b.pot0==95);
-ok('85+/86+ distinti dagli esatti',g('D. Ziegler').plus0&&g('M. Casadei').plus0&&!b.plus0);
-ok('Backup reimportabile',mig(JSON.parse(JSON.stringify(s))).players.length==16);
-const m=match(s.players.filter(p=>p.status=='attivo'),sl('4-3-3'));ok('Nessun giocatore in due slot',new Set(m.filter(x=>x>=0)).size==m.filter(x=>x>=0).length);
-$('io').value=r.join('\n')}
+function imp(){let j;try{j=JSON.parse($('io').value);if(!Array.isArray(j.players))throw 0}catch(e){return toast('Backup non valido')}cfm('Sostituire tutti i dati con il backup?',()=>{S=mig(j);save();R();toast('Ripristinato')})}
+const rst=()=>cfm('Cancellare TUTTO e tornare ai dati iniziali?',()=>{S=seed();save();R()});
 R();
-let _t;const _R=R;R=function(){_R();anim()};
-function anim(){const v=$('v');if(_t!==T){_t=T;v.classList.remove('in');void v.offsetWidth;v.classList.add('in')}
-document.querySelectorAll('.st b').forEach(e=>{const x=e.textContent.trim();if(!/^\d+(\.\d+)?$/.test(x))return;const n=parseFloat(x),d=x.includes('.')?1:0,t0=performance.now(),f=q=>{const k=Math.min(1,(q-t0)/700);e.textContent=(n*(1-Math.pow(1-k,3))).toFixed(d);if(k<1)requestAnimationFrame(f)};requestAnimationFrame(f)})}
-anim();
 </script></body></html>
