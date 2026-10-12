@@ -1,0 +1,1 @@
+{"name":"fc27-database","version":"1.0.0","description":"FC27 Squad Database","author":"FC27","main":"main.js","private":true,"devDependencies":{"electron":"31.0.0","electron-builder":"24.13.3"},"build":{"appId":"app.fc27.database","productName":"FC27 Database","files":["main.js","index.html"],"win":{"target":"portable"},"portable":{"artifactName":"FC27-Database.exe"}}}
